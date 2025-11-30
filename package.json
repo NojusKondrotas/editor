@@ -1,0 +1,21 @@
+{
+  "name": "editor",
+  "version": "1.0.0",
+  "description": "An easily extendable and integrable lightweight WYSIWYG editor.",
+  "main": "index.js",
+  "scripts": {
+    "c-ts": "tsc src/index.ts --target es6",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NojusKondrotas/editor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NojusKondrotas/editor/issues"
+  },
+  "homepage": "https://github.com/NojusKondrotas/editor#readme"
+}
