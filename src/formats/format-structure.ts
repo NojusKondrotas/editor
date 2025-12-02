@@ -3,4 +3,5 @@ export abstract class FormatStructure {
     abstract elementName: string;
 
     static FORMAT_NAME: string;
+    static ELEMENT_NAME: string | string[];
 }

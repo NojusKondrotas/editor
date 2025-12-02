@@ -5,4 +5,5 @@ export class Underline extends FormatStructure {
     elementName = 'u';
 
     static override FORMAT_NAME = 'underline';
+    static override ELEMENT_NAME = 'u';
 }

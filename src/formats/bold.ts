@@ -5,4 +5,5 @@ export class Bold extends FormatStructure {
     elementName = 'strong';
 
     static override FORMAT_NAME = 'bold';
+    static override ELEMENT_NAME = 'strong';
 }

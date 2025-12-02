@@ -5,4 +5,5 @@ export class Strike extends FormatStructure {
     elementName = 's';
     
     static FORMAT_NAME = 'strike';
+    static override ELEMENT_NAME = 's';
 }

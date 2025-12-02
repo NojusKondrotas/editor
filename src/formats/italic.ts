@@ -5,4 +5,5 @@ export class Italic extends FormatStructure {
     elementName = 'em';
 
     static override FORMAT_NAME = 'italic';
+    static override ELEMENT_NAME = 'em';
 }
