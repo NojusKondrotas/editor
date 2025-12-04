@@ -1,4 +1,11 @@
-import {FormatStructure} from "../formats/format-structure.js";
+import { FormatStructure } from "../formats/format-structure.js";
+import { Blockquote } from "../formats/blockquote.js";
+import { Bold } from "../formats/bold.js";
+import { Code } from "../formats/code.js";
+import { Header } from "../formats/header.js";
+import { Italic } from "../formats/italic.js";
+import { Strike } from "../formats/strike.js";
+import { Underline } from "../formats/underline.js";
 
 export function formatSelection(format: FormatStructure){
     const sel: Selection | null = window.getSelection();
