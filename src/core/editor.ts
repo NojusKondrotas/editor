@@ -21,7 +21,7 @@ function focusParagraph(coordinates: { x: number, y: number }){
         if(p.textContent === ""){
             range.setStart(p, 0);
         }else{
-            range.setStart(pos.offsetNode, pos.offset === 0 ? 0 : pos.offset - 1);
+            range.setStart(pos.offsetNode, pos.offset);
         }
     }
     
