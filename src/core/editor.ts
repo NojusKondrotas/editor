@@ -4,13 +4,8 @@ for(let i = 0; i < tmpNodes.length; ++i){
     paragraphs.push(tmpNodes[i] as HTMLParagraphElement);
 }
 
-document.body.addEventListener('click', (e: MouseEvent) => {
-    e.preventDefault();
-    
-    if((e.target as HTMLParagraphElement).tagName === "P")
-        return;
-    
-    const p = getNearestParagraph({ x: e.clientX, y: e.clientY });
+function focusParagraph(coordinates: { x: number, y: number }){
+    const p = getNearestParagraph(coordinates);
     if(!p)
         return;
     p.focus();
@@ -20,7 +15,7 @@ document.body.addEventListener('click', (e: MouseEvent) => {
         return;
 
     let range: Range | null = null;
-    const pos = document.caretPositionFromPoint(e.clientX, e.clientY);
+    const pos = document.caretPositionFromPoint(coordinates.x, coordinates.y);
     if(pos){
         range = document.createRange();
         if(p.textContent === ""){
@@ -35,6 +30,15 @@ document.body.addEventListener('click', (e: MouseEvent) => {
 
     sel.removeAllRanges();
     sel.addRange(range);
+}
+
+document.body.addEventListener('click', (e: MouseEvent) => {
+    e.preventDefault();
+    
+    if((e.target as HTMLParagraphElement).tagName === "P")
+        return;
+    
+    focusParagraph({ x: e.clientX, y: e.clientY });
 })
 
 function getNearestParagraph(pos: { x: number, y: number } = { x: 0, y: 0 }): HTMLParagraphElement | null{
