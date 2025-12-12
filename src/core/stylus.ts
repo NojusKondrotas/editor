@@ -1,6 +1,29 @@
 import { FormatStructure } from "../formats/format-structure";
 
 let chosenStylusOptions: StylusOptions;
+let chosenToolbarOptions: StylusToolbarInteractions;
+
+class StylusToolbarInteractions {
+    formatters: FormatStructure[] = [];
+
+    constructor(interactions: FormatStructure[]) {
+        this.formatters = interactions;
+    }
+
+    append(interaction: FormatStructure) {
+        this.formatters.push(interaction);
+    }
+
+    get(idx: number): FormatStructure | null {
+        return this.formatters[idx] ?? null;
+    }
+
+    set(idx: number, interaction: FormatStructure): void {
+        if (this.formatters.length > idx) {
+            this.formatters[idx] = interaction
+        }
+    }
+}
 
 interface StylusOptionsI {
     contentClass: string;
