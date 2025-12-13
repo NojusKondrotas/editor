@@ -1,26 +1,57 @@
 import { FormatStructure } from "../formats/format-structure";
 
 let chosenStylusOptions: StylusOptions;
-let chosenToolbarOptions: StylusToolbarInteractions;
+let chosenToolbarPrototype: StylusToolbarInteractions;
+
+type EventListeners = Record<string, EventListenerOrEventListenerObject>;
+
+class StylusToolbarInteractionNode {
+    formatter: FormatStructure;
+    domElement: HTMLElement;
+
+    _activeListeners: EventListeners = {};
+
+    constructor(formatter: FormatStructure, domElement: HTMLElement) {
+        this.formatter = formatter;
+        this.domElement = domElement;
+    }
+
+    addListeners(listeners: EventListeners) {
+        this._activeListeners = { ...this._activeListeners, ...listeners };
+        Object.entries(listeners).forEach(([eventType, handler]) => {
+            this.domElement.addEventListener(eventType, handler);
+        });
+    }
+
+    removeListeners(listeners: EventListeners) {
+        Object.entries(listeners).forEach(([eventType, handler]) => {
+            this.domElement.removeEventListener(eventType, handler);
+            if (this._activeListeners.hasOwnProperty(eventType)
+            && this._activeListeners[eventType] === handler) {
+                delete this._activeListeners[eventType];
+            }
+        });
+    }
+}
 
 class StylusToolbarInteractions {
-    formatters: FormatStructure[] = [];
+    formatterNodes: StylusToolbarInteractionNode[] = [];
 
-    constructor(interactions: FormatStructure[]) {
-        this.formatters = interactions;
+    constructor(interactions: StylusToolbarInteractionNode[]) {
+        this.formatterNodes = interactions;
     }
 
-    append(interaction: FormatStructure) {
-        this.formatters.push(interaction);
+    append(interaction: StylusToolbarInteractionNode) {
+        this.formatterNodes.push(interaction);
     }
 
-    get(idx: number): FormatStructure | null {
-        return this.formatters[idx] ?? null;
+    get(idx: number): StylusToolbarInteractionNode | null {
+        return this.formatterNodes[idx] ?? null;
     }
 
-    set(idx: number, interaction: FormatStructure): void {
-        if (this.formatters.length > idx) {
-            this.formatters[idx] = interaction
+    set(idx: number, interaction: StylusToolbarInteractionNode): void {
+        if (this.formatterNodes.length > idx) {
+            this.formatterNodes[idx] = interaction
         }
     }
 }
