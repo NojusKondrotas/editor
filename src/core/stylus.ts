@@ -80,7 +80,7 @@ interface StylusOptionsI {
     toolbarClass: string;
     isSingleToolbar: boolean;
     toolbarPosition: string;
-    fixedToolbarSide: 'up' | 'right' | 'down' | 'left' | 'any';
+    fixedToolbarSide: 'top' | 'right' | 'bottom' | 'left' | 'any';
     toolbarOffset: { x: number, y: number };
 }
 
@@ -89,7 +89,7 @@ class StylusOptions implements StylusOptionsI {
     toolbarClass = "";
     isSingleToolbar = false;
     toolbarPosition = 'initial';
-    fixedToolbarSide: 'up' | 'right' | 'down' | 'left' | 'any' = 'any';
+    fixedToolbarSide: 'top' | 'right' | 'bottom' | 'left' | 'any' = 'any';
     toolbarOffset = { x: 0, y: 0 };
 
     constructor(options: StylusOptionsI){
