@@ -8,8 +8,7 @@ type EventListeners = Record<string, EventListenerOrEventListenerObject>;
 class StylusToolbarInteractionNode {
     formatter: FormatStructure;
     domElement: HTMLElement;
-
-    _activeListeners: EventListeners = {};
+    activeListeners: EventListeners = {};
 
     constructor(formatter: FormatStructure, domElement: HTMLElement) {
         this.formatter = formatter;
@@ -17,7 +16,7 @@ class StylusToolbarInteractionNode {
     }
 
     addListeners(listeners: EventListeners) {
-        this._activeListeners = { ...this._activeListeners, ...listeners };
+        this.activeListeners = { ...this.activeListeners, ...listeners };
         Object.entries(listeners).forEach(([eventType, handler]) => {
             this.domElement.addEventListener(eventType, handler);
         });
@@ -26,9 +25,9 @@ class StylusToolbarInteractionNode {
     removeListeners(listeners: EventListeners) {
         Object.entries(listeners).forEach(([eventType, handler]) => {
             this.domElement.removeEventListener(eventType, handler);
-            if (this._activeListeners.hasOwnProperty(eventType)
-            && this._activeListeners[eventType] === handler) {
-                delete this._activeListeners[eventType];
+            if (this.activeListeners.hasOwnProperty(eventType)
+            && this.activeListeners[eventType] === handler) {
+                delete this.activeListeners[eventType];
             }
         });
     }
@@ -41,10 +40,6 @@ class StylusToolbarInteractions {
         this.formatterNodes = interactions;
     }
 
-    append(interaction: StylusToolbarInteractionNode) {
-        this.formatterNodes.push(interaction);
-    }
-
     get(idx: number): StylusToolbarInteractionNode | null {
         return this.formatterNodes[idx] ?? null;
     }
@@ -52,6 +47,22 @@ class StylusToolbarInteractions {
     set(idx: number, interaction: StylusToolbarInteractionNode): void {
         if (this.formatterNodes.length > idx) {
             this.formatterNodes[idx] = interaction
+        }
+    }
+
+    append(interaction: StylusToolbarInteractionNode) {
+        this.formatterNodes.push(interaction);
+    }
+
+    update(interaction: StylusToolbarInteractionNode) {
+        const idxToReplace = this.formatterNodes.findIndex(
+            node => node.formatter === interaction.formatter
+        )
+        
+        if (idxToReplace !== -1) {
+            this.formatterNodes[idxToReplace] = interaction;
+        } else {
+            this.append(interaction);
         }
     }
 }
@@ -88,4 +99,8 @@ function initStylus(options: StylusOptionsI, className: string){
 
 function updateStylusOptions(options: StylusOptionsI){
     chosenStylusOptions.update(options);
+}
+
+function initToolbarPrototype(interactions: StylusToolbarInteractionNode[]) {
+    chosenToolbarPrototype = new StylusToolbarInteractions(interactions);
 }
