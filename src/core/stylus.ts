@@ -5,10 +5,10 @@ export let chosenToolbarPrototype: StylusToolbarInteractions;
 
 type EventListeners = Record<string, EventListenerOrEventListenerObject>;
 
-class StylusToolbarInteractionNode {
+export class StylusToolbarInteractionNode {
     formatter: FormatStructure;
-    domElement: HTMLElement;
-    activeListeners: EventListeners = {};
+    domElement: HTMLElement | null;
+    eventListeners: EventListeners = {};
 
     constructor(formatter: FormatStructure, domElement: HTMLElement) {
         this.formatter = formatter;
@@ -16,19 +16,27 @@ class StylusToolbarInteractionNode {
     }
 
     addListeners(listeners: EventListeners) {
-        this.activeListeners = { ...this.activeListeners, ...listeners };
-        Object.entries(listeners).forEach(([eventType, handler]) => {
-            this.domElement.addEventListener(eventType, handler);
+        this.eventListeners = { ...this.eventListeners, ...listeners };
+    }
+
+    applyListenersToDOM(domElement: HTMLElement) {
+        Object.entries(this.eventListeners).forEach(([eventType, handler]) => {
+            domElement.addEventListener(eventType, handler);
         });
     }
 
     removeListeners(listeners: EventListeners) {
         Object.entries(listeners).forEach(([eventType, handler]) => {
-            this.domElement.removeEventListener(eventType, handler);
-            if (this.activeListeners.hasOwnProperty(eventType)
-            && this.activeListeners[eventType] === handler) {
-                delete this.activeListeners[eventType];
+            if (this.eventListeners.hasOwnProperty(eventType)
+            && this.eventListeners[eventType] === handler) {
+                delete this.eventListeners[eventType];
             }
+        });
+    }
+
+    removeListenersFromDOM(domElement: HTMLElement) {
+        Object.entries(this.eventListeners).forEach(([eventType, handler]) => {
+            domElement.removeEventListener(eventType, handler);
         });
     }
 }
