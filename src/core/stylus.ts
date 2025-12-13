@@ -1,7 +1,7 @@
 import { FormatStructure } from "../formats/format-structure";
 
-let chosenStylusOptions: StylusOptions;
-let chosenToolbarPrototype: StylusToolbarInteractions;
+export let chosenStylusOptions: StylusOptions;
+export let chosenToolbarPrototype: StylusToolbarInteractions;
 
 type EventListeners = Record<string, EventListenerOrEventListenerObject>;
 
