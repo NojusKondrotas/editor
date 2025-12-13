@@ -94,10 +94,10 @@ class StylusOptions implements StylusOptionsI {
 }
 
 function initStylus(options: StylusOptionsI){
-    chosenStylusOptions = new StylusOptions(options)
+    chosenStylusOptions = new StylusOptions(options);
 }
 
-function updateStylusOptions(options: StylusOptionsI){
+function updateStylusOptions(options: Partial<StylusOptionsI>){
     chosenStylusOptions.update(options);
 }
 
