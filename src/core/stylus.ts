@@ -1,4 +1,4 @@
-import { FormatStructure } from "../formats/format-structure";
+import { TagFormat } from "../formats/abstractions/tag-format";
 import { formatSelection } from "./format";
 
 export class StylusConfiguration {
@@ -14,11 +14,11 @@ export class StylusConfiguration {
 type EventListeners = Record<string, EventListenerOrEventListenerObject>;
 
 export class StylusToolbarInteractionNode {
-    formatter: FormatStructure;
+    formatter: TagFormat;
     eventListeners: EventListeners = {};
     parentToolbar: StylusToolbarInteractions;
 
-    constructor(formatter: FormatStructure, p: StylusToolbarInteractions) {
+    constructor(formatter: TagFormat, p: StylusToolbarInteractions) {
         this.formatter = formatter;
         this.parentToolbar = p;
     }
@@ -88,7 +88,7 @@ export class StylusToolbarInteractions {
         }
     }
 
-    format(formmater: FormatStructure) {
+    format(formmater: TagFormat) {
         formatSelection(formmater);
     }
 }

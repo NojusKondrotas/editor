@@ -1,4 +1,3 @@
-import { FormatStructure } from "../formats/abstractions/format-structure";
 import type { TagFormat } from "../formats/abstractions/tag-format";
 import type { CSSFormat } from "../formats/abstractions/css-format";
 import { Blockquote } from "../formats/blockquote.js";
@@ -9,7 +8,7 @@ import { Italic } from "../formats/italic.js";
 import { Strike } from "../formats/strike.js";
 import { Underline } from "../formats/underline.js";
 
-export function formatSelection(format: FormatStructure){
+export function formatSelection(format: TagFormat){
     const sel: Selection | null = window.getSelection();
     if(!sel || sel.rangeCount === 0)
         return;
