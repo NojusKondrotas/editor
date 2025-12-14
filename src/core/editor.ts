@@ -1,4 +1,4 @@
-import { StylusConfiguration } from "./stylus";
+import { StylusConfiguration } from "./stylus.js";
 
 let stylusTargets: HTMLElement[] = [];
 

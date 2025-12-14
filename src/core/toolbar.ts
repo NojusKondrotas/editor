@@ -1,4 +1,4 @@
-import { StylusConfiguration, StylusToolbarInteractionNode, StylusToolbarInteractions } from "./stylus";
+import { StylusConfiguration, StylusToolbarInteractionNode, StylusToolbarInteractions } from "./stylus.js";
 
 export class StylusToolbar {
     static InstantiatedToolbars = new Set();

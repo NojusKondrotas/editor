@@ -1,9 +1,9 @@
-import type { TagFormat } from "../formats/abstractions/tag-format";
-import type { CSSFormat } from "../formats/abstractions/css-format";
+import type { TagFormat } from "../formats/abstractions/tag-format.js";
+import type { CSSFormat } from "../formats/abstractions/css-format.js";
 import { Blockquote } from "../formats/blockquote.js";
 import { Bold } from "../formats/bold.js";
 import { Code } from "../formats/code.js";
-import { Color } from "../formats/color";
+import { Color } from "../formats/color.js";
 import { Header } from "../formats/header.js";
 import { Italic } from "../formats/italic.js";
 import { Strike } from "../formats/strike.js";

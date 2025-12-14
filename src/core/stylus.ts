@@ -1,5 +1,5 @@
-import { TagFormat } from "../formats/abstractions/tag-format";
-import { formatSelection } from "./format";
+import { TagFormat } from "../formats/abstractions/tag-format.js";
+import { formatSelection } from "./format.js";
 
 export class StylusConfiguration {
     static StylusOptions: StylusOptions;
