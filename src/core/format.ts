@@ -3,6 +3,7 @@ import type { CSSFormat } from "../formats/abstractions/css-format";
 import { Blockquote } from "../formats/blockquote.js";
 import { Bold } from "../formats/bold.js";
 import { Code } from "../formats/code.js";
+import { Color } from "../formats/color";
 import { Header } from "../formats/header.js";
 import { Italic } from "../formats/italic.js";
 import { Strike } from "../formats/strike.js";
