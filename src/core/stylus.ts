@@ -4,6 +4,11 @@ import { formatSelection } from "./format";
 export class StylusConfiguration {
     static chosenStylusOptions: StylusOptions;
     static chosenToolbarPrototype: StylusToolbarInteractions;
+    static toolbarInteractorClickEvent: Record<string, EventListenerOrEventListenerObject> = {
+        click: function(this: StylusToolbarInteractionNode, e: Event) {
+            this.parentToolbar.format(this.formatter);
+        }
+    }
 }
 
 type EventListeners = Record<string, EventListenerOrEventListenerObject>;
@@ -16,6 +21,10 @@ export class StylusToolbarInteractionNode {
     constructor(formatter: FormatStructure, p: StylusToolbarInteractions) {
         this.formatter = formatter;
         this.parentToolbar = p;
+    }
+
+    addDefaultListener() {
+        this.eventListeners = { ...this.eventListeners, ...StylusConfiguration.toolbarInteractorClickEvent };
     }
 
     addListeners(listeners: EventListeners) {
