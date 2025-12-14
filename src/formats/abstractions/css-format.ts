@@ -1,6 +1,6 @@
-import { TagFormat } from "./tag-format";
+import type { TagFormat } from "./tag-format";
 
-export abstract class CSSFormat extends TagFormat {
-    abstract propertyName: string;
-    abstract propertyValue: string;
+export interface CSSFormat extends TagFormat {
+    propertyName: string;
+    propertyValue: string;
 }

@@ -1,6 +1,6 @@
 import type { TagFormat } from './abstractions/tag-format';
 
-export class Bold implements TagFormat {
-    formatName = 'bold';
-    elementName = 'strong';
+export const Bold: TagFormat = {
+    formatName: 'bold',
+    elementName: 'strong',
 }

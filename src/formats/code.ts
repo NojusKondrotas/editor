@@ -1,6 +1,6 @@
-import type { TagFormat } from "./abstractions/tag-format";
+import {type  TagFormat } from "./abstractions/tag-format";
 
-export class Code implements TagFormat {
-    formatName = 'code';
-    elementName = 'code';
+export const Code: TagFormat = {
+    formatName: 'code',
+    elementName: 'code',
 }
