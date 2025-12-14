@@ -1,3 +1,5 @@
+import * as Editor from "./editor.js";
+import * as Toolbar from "./toolbar.js";
 import { TagFormat } from "../formats/abstractions/tag-format.js";
 import { formatSelection } from "./format.js";
 
