@@ -1,8 +1,10 @@
 import { FormatStructure } from "../formats/format-structure";
 import { formatSelection } from "./format";
 
-export let chosenStylusOptions: StylusOptions;
-export let chosenToolbarPrototype: StylusToolbarInteractions;
+export class StylusConfiguration {
+    static chosenStylusOptions: StylusOptions;
+    static chosenToolbarPrototype: StylusToolbarInteractions;
+}
 
 type EventListeners = Record<string, EventListenerOrEventListenerObject>;
 
@@ -109,13 +111,13 @@ class StylusOptions implements StylusOptionsI {
 }
 
 function initStylus(options: StylusOptionsI){
-    chosenStylusOptions = new StylusOptions(options);
+    StylusConfiguration.chosenStylusOptions = new StylusOptions(options);
 }
 
 function updateStylusOptions(options: Partial<StylusOptionsI>){
-    chosenStylusOptions.update(options);
+    StylusConfiguration.chosenStylusOptions.update(options);
 }
 
 function initToolbarPrototype(interactions: StylusToolbarInteractionNode[]) {
-    chosenToolbarPrototype = new StylusToolbarInteractions(interactions);
+    StylusConfiguration.chosenToolbarPrototype = new StylusToolbarInteractions(interactions);
 }

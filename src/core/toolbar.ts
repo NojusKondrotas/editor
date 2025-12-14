@@ -1,22 +1,24 @@
-import { chosenStylusOptions, chosenToolbarPrototype, StylusToolbarInteractionNode, StylusToolbarInteractions } from "./stylus";
+import { StylusConfiguration, StylusToolbarInteractionNode, StylusToolbarInteractions } from "./stylus";
 
-export let instantiatedToolbars = new Set();
+export class StylusToolbar {
+    static instantiatedToolbars = new Set();
+}
 
 function initToolbar(target: HTMLElement, coords?: { left: number, top: number }) {
     const toolbarObj: StylusToolbarInteractions = new StylusToolbarInteractions([]);
-    instantiatedToolbars.add(toolbarObj);
+    StylusToolbar.instantiatedToolbars.add(toolbarObj);
 
     const toolbarContainer = document.createElement('div');
-    toolbarContainer.classList.add(chosenStylusOptions.toolbarClass);
-    toolbarContainer.style.position = chosenStylusOptions.toolbarPosition;
+    toolbarContainer.classList.add(StylusConfiguration.chosenStylusOptions.toolbarClass);
+    toolbarContainer.style.position = StylusConfiguration.chosenStylusOptions.toolbarPosition;
     if (coords) {
-        toolbarContainer.style.left = (coords.left + chosenStylusOptions.toolbarOffset.x) + 'px';
-        toolbarContainer.style.top = (coords.top + chosenStylusOptions.toolbarOffset.y) + 'px';
+        toolbarContainer.style.left = (coords.left + StylusConfiguration.chosenStylusOptions.toolbarOffset.x) + 'px';
+        toolbarContainer.style.top = (coords.top + StylusConfiguration.chosenStylusOptions.toolbarOffset.y) + 'px';
     } else {
-        toolbarContainer.style.left = chosenStylusOptions.toolbarOffset.x + 'px';
-        toolbarContainer.style.top = chosenStylusOptions.toolbarOffset.y + 'px';
+        toolbarContainer.style.left = StylusConfiguration.chosenStylusOptions.toolbarOffset.x + 'px';
+        toolbarContainer.style.top = StylusConfiguration.chosenStylusOptions.toolbarOffset.y + 'px';
     }
-    switch (chosenStylusOptions.fixedToolbarSide) {
+    switch (StylusConfiguration.chosenStylusOptions.fixedToolbarSide) {
         case 'top':
             toolbarContainer.style.top = '0';
             break;
@@ -31,7 +33,7 @@ function initToolbar(target: HTMLElement, coords?: { left: number, top: number }
             break;
     }
 
-    chosenToolbarPrototype.formatterNodes.forEach(node => {
+    StylusConfiguration.chosenToolbarPrototype.formatterNodes.forEach(node => {
         toolbarContainer.appendChild(initToolbarBtn(node, toolbarObj));
     });
 
@@ -41,7 +43,7 @@ function initToolbar(target: HTMLElement, coords?: { left: number, top: number }
 function initToolbarBtn(interaction: StylusToolbarInteractionNode,
     parentToolbar: StylusToolbarInteractions) {
     const btn = document.createElement('button');
-    btn.classList.add(chosenStylusOptions.toolbarClass + '-btn');
+    btn.classList.add(StylusConfiguration.chosenStylusOptions.toolbarClass + '-btn');
 
     Object.entries(interaction.eventListeners).forEach(([eventType, handler]) => {
         btn.addEventListener(eventType, handler);
