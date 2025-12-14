@@ -1,5 +1,5 @@
-import { FormatStructure } from "format-structure";
+import { TagFormat } from "./tag-format";
 
-export abstract class CSSFormat extends FormatStructure {
+export abstract class CSSFormat extends TagFormat {
     abstract className: string;
 }
