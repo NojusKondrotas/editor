@@ -1,6 +1,6 @@
-import { FormatStructure } from './format-structure.js';
+import type { TagFormat } from "./abstractions/tag-format";
 
-export class Underline extends FormatStructure {
+export class Underline implements TagFormat {
     formatName = 'underline';
     elementName = 'u';
 }

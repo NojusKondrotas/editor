@@ -1,6 +1,6 @@
-import { FormatStructure } from './format-structure.js';
+import type { TagFormat } from './abstractions/tag-format';
 
-export class Bold extends FormatStructure {
+export class Bold implements TagFormat {
     formatName = 'bold';
     elementName = 'strong';
 }

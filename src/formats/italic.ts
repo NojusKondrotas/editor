@@ -1,6 +1,6 @@
-import {FormatStructure} from './format-structure.js';
+import type { TagFormat } from "./abstractions/tag-format";
 
-export class Italic extends FormatStructure {
+export class Italic implements TagFormat {
     formatName = 'italic';
     elementName = 'em';
 }

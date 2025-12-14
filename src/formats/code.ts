@@ -1,6 +1,6 @@
-import {FormatStructure} from "./format-structure.js";
+import type { TagFormat } from "./abstractions/tag-format";
 
-export class Code extends FormatStructure {
+export class Code implements TagFormat {
     formatName = 'code';
     elementName = 'code';
 }

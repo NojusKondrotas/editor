@@ -1,4 +1,6 @@
-import { FormatStructure } from "../formats/format-structure.js";
+import { FormatStructure } from "../formats/abstractions/format-structure";
+import type { TagFormat } from "../formats/abstractions/tag-format";
+import type { CSSFormat } from "../formats/abstractions/css-format";
 import { Blockquote } from "../formats/blockquote.js";
 import { Bold } from "../formats/bold.js";
 import { Code } from "../formats/code.js";

@@ -1,6 +1,6 @@
-import {FormatStructure} from "./format-structure.js";
+import type { TagFormat } from "./abstractions/tag-format";
 
-export class Strike extends FormatStructure {
+export class Strike implements TagFormat {
     formatName = 'strike';
     elementName = 's';
 }

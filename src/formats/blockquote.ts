@@ -1,6 +1,6 @@
-import {FormatStructure} from "./format-structure.js";
+import type { TagFormat } from "./abstractions/tag-format";
 
-export class Blockquote extends FormatStructure {
+export class Blockquote implements TagFormat {
     formatName = 'blockquote';
     elementName = 'blockquote';
 }
